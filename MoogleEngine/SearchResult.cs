@@ -4,6 +4,8 @@ public class SearchResult
 {
     private SearchItem[] items;
 
+    
+
     public SearchResult(SearchItem[] items, string suggestion="")
     {
         if (items == null) {
@@ -21,7 +23,7 @@ public class SearchResult
     public string Suggestion { get; private set; }
 
     public IEnumerable<SearchItem> Items() {
-        return this.items;
+        return this.items.Where(elem=>elem.Score>0);
     }
 
     public int Count { get { return this.items.Length; } }

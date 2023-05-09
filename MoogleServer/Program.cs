@@ -8,7 +8,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
-
+MoogleEngine.Moogle.Load();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

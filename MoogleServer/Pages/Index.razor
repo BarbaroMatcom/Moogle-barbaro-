@@ -2,11 +2,18 @@
 
 <PageTitle>Moogle!</PageTitle>
 
-<h1>🔍 Moogle!</h1>
+<h1><span>M</span><span>oo</span><span>g</span><span>l</span><span>e</span><span>!</span></h1>
+<div>
+<cite>HOY ES UN GRAN DÏA</cite> 
+</div>
 
-<input class="p-1 my-4" @bind="query" placeholder="Introduzca su búsqueda">
 
-<button type="default" class="btn btn-primary" @onclick="RunQuery">🔍 Buscar</button>
+
+<input class="p-1 my-4" @bind="query" placeholder="Introduzca su búsqueda"> 
+
+<button type="submit" class="btn btn-custom" @onkeyup="KeyHandler" @onclick="RunQuery" onmouseover="this.style.backgroundColor='#4285F4'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='#fff'; this.style.color='#4285F4';">
+  <i class="fa fa-search"></i> Buscar 👀 </button>
+
 
 @if (!string.IsNullOrEmpty(result.Suggestion)) {
     <div class="suggestion">
@@ -18,7 +25,7 @@
 @foreach (var item in result.Items()) {
     <li>
         <div class="item">
-            <p class="title">@item.Title</p>
+            <p class="title">@item.Title @item.Score</p>
             <p>... @item.Snippet ...</p>
         </div>
     </li>
@@ -32,4 +39,11 @@
     private void RunQuery() {
         result = Moogle.Query(query);
     }
+
+private void KeyHandler(KeyboardEventArgs args) {
+    if(args.Key == "s")
+    {
+        RunQuery();
+    }
+}
 }
